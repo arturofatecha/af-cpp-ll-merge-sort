@@ -1,6 +1,8 @@
 *DS_Store
 *.o
 *.d
+*.log
+*.json
 .objs/
 *submission*.zip
 *starter*zip

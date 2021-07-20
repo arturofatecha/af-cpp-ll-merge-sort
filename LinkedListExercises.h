@@ -286,6 +286,36 @@ LinkedList<T> LinkedList<T>::merge(const LinkedList<T>& other) const {
 
   // -----------------------------------------------------------
 
+  Node *ptrLeft = left.head_;
+  Node *ptrRight = right.head_;
+  Node *newNode = nullptr;
+
+  while(ptrLeft!=nullptr || ptrRight!= nullptr){
+    //If Left list runs out, merged points to Right
+    if(ptrLeft == nullptr){
+      merged.pushBack(ptrRight->data);
+      ptrRight=ptrRight->next;
+    }
+    else{
+      //If Right list runs out, merged points to left
+      if(ptrRight == nullptr){
+        merged.pushBack(ptrLeft->data);
+        ptrLeft=ptrLeft->next;
+      }
+      //Compare and put the smallest element into merged
+      else{
+        if(ptrLeft->data <= ptrRight->data){
+          merged.pushBack(ptrLeft->data);
+          ptrLeft = ptrLeft->next;
+        }
+        else{
+          merged.pushBack(ptrRight->data);
+          ptrRight = ptrRight->next;
+        }
+      }
+    }
+  }
+
   // We return the merged list by value here. It may be copied out of the
   // function, but usually the compiler will optimize this to automatically
   // create it directly in the correct memory space outside without copying.
